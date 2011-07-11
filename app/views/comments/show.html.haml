@@ -1,0 +1,12 @@
+%article
+  %header
+    %h3= link_to @comment.name, @comment.url
+  %section
+    :textile
+      #{@comment.body}
+%nav
+  - if admin_logged_in?
+    = link_to 'Edit', edit_comment_path(@comment)
+    |
+  = link_to 'Back', comments_path
+

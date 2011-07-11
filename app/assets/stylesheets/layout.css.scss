@@ -1,0 +1,77 @@
+// Place all the styles related to the replies controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// includes
+@import "scaffolds.css.scss";
+
+// variables
+// sizing
+$header-width: 960px;
+$header-height:  136px;
+
+$left-column-width: 228px;
+$right-column-width: 624px;
+
+
+
+.site_header {
+  width: $header-width;
+  height: $header-height;
+  padding:  0 10px;
+
+  .site-logo {
+    width: $left-column-width;
+    height: $header-height;
+    position: relative;
+    float: left;
+    background: {
+      color: $grey-light;
+    }
+  }
+
+  .top_nav {
+    width: $right-column-width;
+    height: 64px;
+  }
+}
+
+#container {
+  width: $page-width;
+  padding: 0 10px;
+
+  #left_column {
+    width: $left-column-width;
+    position: relative;
+    float: left;
+
+    p.site_description{
+
+    }
+
+    nav.left_nav {
+
+      ul.nav_links {
+        position: relative;
+        float: left;
+        margin: 0;
+        list-style: none;
+
+        li.nav_link {
+          margin: 0;
+          list-style: none;
+        }
+      }
+    }
+  }
+
+  #right_column {
+    width: $right-column-width;
+    position: relative;
+    float: left;
+    margin: 0 0 0 88px;
+  }
+
+}
+
+

@@ -1,0 +1,11 @@
+%article
+  %header
+    %h3= @draft_post.title
+  %section
+    :textile
+      #{@draft_post.body}
+%nav
+  - if admin_logged_in?
+    = link_to 'Edit', edit_post_path(@draft_post)
+    |
+  = link_to 'Back', draft_posts_path

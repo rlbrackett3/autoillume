@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+valid:
+  body: MyString
+  created_at: 2011-06-22 15:00:00 -0400
+  updated_at: 2011-06-22 15:10:00 -0400
+  comment: approved
+  admin: foo
+
+two:
+  body: MyString
+
+
+
+
+# == Schema Information
+#
+# Table name: replies
+#
+#  id         :integer         not null, primary key
+#  body       :text
+#  comment_id :integer
+#  created_at :datetime
+#  updated_at :datetime
+#  admin_id   :integer
+#
+

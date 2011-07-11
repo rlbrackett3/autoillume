@@ -1,0 +1,38 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+valid:
+  name: 'Guy'
+  email: 'guy@opinion.com'
+  url: 'http://www.opinion.com'
+  body: 'Some opinionated stuff.'
+  state: "unapproved"
+  post: valid #loaded from post fixture
+
+approved:
+  name: 'Nice Guy'
+  email: 'niceguy@opinion.com'
+  url: 'http://www.thoughtful.com'
+  body: 'Some thoughtful stuff.'
+  state: "approved"
+  post: valid #loaded from post fixture
+
+
+# == Schema Information
+#
+# Table name: comments
+#
+#  id         :integer         not null, primary key
+#  name       :string(255)
+#  email      :string(255)
+#  url        :string(255)
+#  body       :text
+#  post_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#  state      :string(255)
+#
+

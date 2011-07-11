@@ -1,0 +1,19 @@
+%h1 Listing draft_posts
+%table
+  %tr
+    %th Title
+    %th Body
+    %th
+    %th
+    %th
+  - @draft_posts.each do |post|
+    %tr
+      %td= post.title
+      %td= post.body
+      %td= link_to 'Show', draft_post_path(post)
+      - if admin_logged_in?
+        %td= link_to 'Edit', edit_post_path(post)
+        %td= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete
+- if admin_logged_in?
+  %br/
+  = link_to 'New Post', new_post_path

@@ -1,0 +1,16 @@
+# Admin and Users
+*implement fuller tests for admin
+  *refactor authentication for integration with rails 3.1
+
+# Comments and Replies
+*implement reply system for comments
+  *test reply controller
+*restrict reply new create edit update destroy to logged in admin
+*restrict comment edit update destroy actions to logged in admin
+
+*implement image uploading, storage, and posting feature
+*Photo TESTS
+
+*implement post Category feature
+
+*tests for Post publsihed_at datetime (using validates_timeliness gem??)

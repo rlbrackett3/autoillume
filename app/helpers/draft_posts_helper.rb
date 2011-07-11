@@ -1,0 +1,2 @@
+module DraftPostsHelper
+end

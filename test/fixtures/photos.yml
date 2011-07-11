@@ -1,0 +1,36 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: Landscape
+  width: 640
+  height: 480
+  orientation: landscape
+  section: valid
+
+two:
+  title: Portrait
+  width: 480
+  height: 640
+  orientation: portrait
+  section: valid
+
+valid:
+  title: Photo Title
+  width: 640
+  height: 480
+  orientation: landscape
+  section: valid
+# == Schema Information
+#
+# Table name: photos
+#
+#  id          :integer         not null, primary key
+#  title       :string(255)
+#  width       :integer
+#  height      :integer
+#  orientation :string(255)
+#  section_id  :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+

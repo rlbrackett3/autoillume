@@ -1,0 +1,31 @@
+= form_for(@post) do |f|
+  = f.error_messages
+  %p.field
+    = f.label :title
+    %br
+    = f.text_field :title
+    = f.fields_for :sections do |section|
+      = section.fields_for :photo do |photo|
+        %p.field
+          = photo.label :image
+          %br
+          = photo.file_field :image
+          = photo.hidden_field :image_cache
+        %p.field
+          = photo.label :title
+          %br
+          = photo.text_field :title
+      %p.field
+        = section.label :body
+        %br
+        = section.text_area :body
+  %p.field
+    = f.label :published_at
+    %br
+    = f.datetime_select :published_at
+  %p.field
+    = f.label :state
+    %br
+    = f.collection_select :state, @post.state_transitions, :event, :human_to_name#, include_blank: @post.human_state_name
+  %p.actions
+    = f.submit

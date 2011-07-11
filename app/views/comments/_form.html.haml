@@ -1,0 +1,23 @@
+= form_for @comment do |f|
+  = f.error_messages
+
+  %p.field
+    = f.label :name
+    %br/
+    = f.text_field :name
+  %p.field
+    = f.label :email
+    (your email will not be shared)
+    %br/
+    = f.text_field :email
+  %p.field
+    = f.label :url
+    %br/
+    = f.text_field :url
+  %p.field
+    = f.label :body
+    (supports textile formatting)
+    %br/
+    = f.text_area :body
+  %p.actions
+    = f.submit 'Save'

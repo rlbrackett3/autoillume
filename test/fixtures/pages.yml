@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  permalink: MyString
+  content: MyText
+
+two:
+  title: MyString
+  permalink: MyString
+  content: MyText
+
+about:
+  title: About
+  permalink: About
+  content: This is a page about the blog.
+
+# == Schema Information
+#
+# Table name: pages
+#
+#  id         :integer         not null, primary key
+#  title      :string(255)
+#  permalink  :string(255)
+#  content    :text
+#  created_at :datetime
+#  updated_at :datetime
+#
+

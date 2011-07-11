@@ -1,0 +1,40 @@
+!!!
+%html
+  %head
+    %title
+      = yield(:title) || "Untitled"
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    = yield(:head)
+
+  %body
+    - if flash[:notice] || flash[:alert]
+      - flash.each do |name, msg|
+        = content_tag :div, msg, :id => "flash_#{name}"
+    %header.site_header
+      .site-logo
+        = link_to "(auto)illume", root_path, title: "(auto)illume -- home", class: "logo_link"
+      %nav.top_nav
+
+    #container
+      %section#left_column
+        - if show_title?
+          %h1= yield(:title)
+        %p.site_description
+          Hi there, I’m Laura. This is a description of what goes on at Illume, and how, if you read this you can be awesome. This could go on for maybe a sentence more. Or maybe there could be one more sentence! { read more }
+        %nav.left_nav
+          %ul.nav_links
+            %li.nav_link= link_to "ABOUT", "#"
+            %li.nav_link= link_to "CONTACT", "#"
+            %li.nav_link= link_to "FLICKR", "#"
+            %li.nav_link= link_to "PINTEREST", "#"
+      %section#right_column
+        = yield
+
+    %footer
+      %nav#footer
+
+  - if Rails.env.development?
+    = render "layouts/debug"

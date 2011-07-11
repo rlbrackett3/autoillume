@@ -1,0 +1,50 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  body: MyText
+
+two:
+  title: MyString
+  body: MyText
+
+valid:
+  title: The Title.
+  body: The Body Text.
+  state: initial
+  created_at: 2011-06-22 15:00:00 -0400
+  updated_at: 2011-06-22 15:10:00 -0400
+  admin: foo # loaded from admin.fixtures
+
+draft:
+  title: Draft Title.
+  body: Draft Body Text.
+  state: draft
+  created_at: 2011-06-22 15:00:00 -0400
+  updated_at: 2011-06-22 15:10:00 -0400
+  admin: foo # loaded from admin.fixtures
+
+published:
+  title: Published Title.
+  body: Published Body Text.
+  state: published
+  created_at: 2011-06-22 15:00:00 -0400
+  updated_at: 2011-06-22 15:10:00 -0400
+  published_at: 2011-06-22 15:20:00 -0400
+  admin: foo # loaded from admin.fixtures
+
+
+# == Schema Information
+#
+# Table name: posts
+#
+#  id           :integer         not null, primary key
+#  title        :string(255)
+#  body         :text
+#  created_at   :datetime
+#  updated_at   :datetime
+#  admin_id     :integer
+#  state        :string(255)
+#  published_at :datetime
+#
+

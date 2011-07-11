@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @photo.title
+%p
+  %b Width:
+  = @photo.width
+%p
+  %b Height:
+  = @photo.height
+%p
+  %b Orientation:
+  = @photo.orientation
+%p
+  %b Section:
+  = @photo.section
+
+= link_to 'Edit', edit_photo_path(@photo)
+\|
+= link_to 'Back', photos_path

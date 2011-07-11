@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+valid:
+  body: Section Body
+  position: 0
+  post: valid
+
+text:
+  body: Text Section Body
+  position: 1
+  post: valid
+
+#photo:
+  #photo: valid
+  #position: 0
+  #post: valid
+
+# == Schema Information
+#
+# Table name: sections
+#
+#  id         :integer         not null, primary key
+#  body       :text
+#  position   :integer         default(0)
+#  post_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
