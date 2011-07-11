@@ -1,3 +1,9 @@
+# Posts
+*update show view to order sections and ofer comments.
+*set up section ordering in post edit
+
+*Implement dynamic nested form for adding sections to a new post.
+
 # Admin and Users
 *implement fuller tests for admin
   *refactor authentication for integration with rails 3.1
@@ -8,8 +14,10 @@
 *restrict reply new create edit update destroy to logged in admin
 *restrict comment edit update destroy actions to logged in admin
 
-*implement image uploading, storage, and posting feature
+
 *Photo TESTS
+  *tests for image processing
+  *tests for saving image meta data (dimensions and orientation)
 
 *implement post Category feature
 
