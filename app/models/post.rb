@@ -1,16 +1,19 @@
 require 'carrierwave/orm/activerecord'
 
 class Post < ActiveRecord::Base
-  # self.abstract = true
 
-  attr_accessible :title, :body, :state, :published_at, :sections_attributes#, :photos_attributes#, :admin_id #protect the admin id
+  attr_accessible :title, :body, :state, :published_at, :sections_attributes, :photo_sections_attributes, :text_sections_attributes#, :photos_attributes#, :admin_id #protect the admin id
 
   belongs_to :admin
   has_many :comments, dependent: :destroy
   has_many :sections, dependent: :destroy
+  has_many :photo_sections, dependent: :destroy, class_name: "Section"
+  has_many :text_sections, dependent: :destroy, class_name: "Section"
   # has_many :photos, through: :sections
 
   accepts_nested_attributes_for :sections, allow_destroy: true
+  accepts_nested_attributes_for :photo_sections, allow_destroy: true
+  accepts_nested_attributes_for :text_sections, allow_destroy: true
   # accepts_nested_attributes_for :photos, allow_destroy: true
 
   # States and Transitions with state_machine gem
@@ -35,20 +38,13 @@ class Post < ActiveRecord::Base
                                            length: { maximum: TITLE_MAX_LENGTH }
   # validates :body,               presence: true
   # validates :published_at,  presence: true, allow_blank: true
-  # validates :admin_id,        presence: true
+  validates :admin_id,        presence: true
   validates :state,               presence: true
-  validates_associated :sections
-  # validate :published_at_is_valid_datetime #not tested yet
+  validates_associated :sections, :photo_sections, :text_sections
 
-  # # scopes
+  # scopes
   scope :drafts, where(state: 'draft')
   scope :published, where(state: 'published')
-
-private
-  # possible work around for validating datetime, not tested yet
-  # def published_at_is_valid_datetime
-  #   errors.add(:published_at, 'must be a valid datetime') if ((DateTime.parse(happened_at) rescue ArgumentError) == ArgumentError)
-  # end
 
 end
 

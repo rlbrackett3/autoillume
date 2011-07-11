@@ -28,8 +28,9 @@ class PostsController < ApplicationController
   def new
     find_admin
     @post = @admin.posts.new
-    section = @post.sections.build
-    photo = section.build_photo
+    text_section = @post.text_sections.build
+    photo_section = @post.photo_sections.build
+    photo = photo_section.build_photo
 
     respond_to do |format|
       format.html # new.html.erb

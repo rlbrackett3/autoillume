@@ -1,6 +1,8 @@
 require 'test_helper'
+require 'carrierwave/test/matchers'
 
 class PhotoTest < ActiveSupport::TestCase
+  include CarrierWave::Test::Matchers
   # setup
   ################################
   def setup
@@ -25,13 +27,14 @@ class PhotoTest < ActiveSupport::TestCase
 
     # Load in valid data
     photo.title = photos(:valid).title
-    photo.section_id = sections(:valid).id
+    photo.image = photo.image = File.open(Rails.root.join("app/assets/images/rails.png"))
+    photo.section = sections(:valid)
 
-    assert photo.valid?
+    assert photo.valid?, "Photo does not have valid attr."
 
     # check that all values were set correctly with valid data
-    assert_equal photo.title, photos(:valid).title
-    assert_equal photo.section_id, sections(:valid).id
+    assert_equal photo.title, photos(:valid).title, "Title not set to correct value."
+    assert_equal photo.section_id, sections(:valid).id, "Section not set."
   end
   ################################
 
@@ -49,7 +52,7 @@ class PhotoTest < ActiveSupport::TestCase
     assert photos(:valid).updated_at, "Photo does not respond to updated_at."
   end
 
-  test 'Photo: should respond to post_id' do
+  test 'Photo: should respond to section_id' do
     assert photos(:valid).section_id, "Photo does not respond to section_id."
   end
 
@@ -80,24 +83,25 @@ class PhotoTest < ActiveSupport::TestCase
     assert !@photo.valid?, "Saved a Section with a long title."
   end
 
-  test 'title: should create a valid section with a title' do
-    photo = Photo.new title: "foobar"
-    photo.section_id = @section.id
-    assert photo.save, "Created an invalid Photo with no title."
+  test 'title: should create a valid photo with a title' do
+    photo = @section.create_photo title: "foobar"
+    photo.image = File.open(Rails.root.join("app/assets/images/rails.png"))
+    assert photo.save, "Failed to create a valid Photo with a title."
   end
   ################################
 
   # image
   ################################
   test 'image: should fail when no image file is assigned' do
-    photo = @section.photos.build
+    photo = @section.build_photo
     assert !photo.save, "Saved a photo without an image file."
   end
 
   test 'image: should be success when an image file is assigned' do
-    photo = @section.photos.create title: "foobar", image_filename: "test.jpg"
+    photo = @section.create_photo title: "foobar"
+    photo.image = File.open(Rails.root.join("app/assets/images/rails.png"))
     photo.save
-    assert_equal photo.image.current_path, (Rails.public_path + "/uploads/photo/image/#{photo.id}/test.jpg")
+    assert_equal photo.image.current_path, (Rails.public_path + "/uploads/photo/image/#{photo.id}/rails.png")
   end
   ################################
 
@@ -105,25 +109,30 @@ class PhotoTest < ActiveSupport::TestCase
   ################################
   test 'width: should save image width' do
     stub_magick(640, 480)
-    photo = @section.photos.create title: "foobar", image_filename: "test.jpg"
+    photo = @section.create_photo title: "foobar", image_filename: "rails.png"
+    photo.save
     assert_equal photo.width, 640, "Width not set to 640"
   end
 
   test 'height: should save image height' do
     stub_magick(640, 480)
-    photo = @section.photos.create title: "foobar", image_filename: "test.jpg"
+    photo = @section.create_photo title: "foobar", image_filename: "rails.png"
     assert_equal photo.width, 480, "Width not set to 480"
   end
 
   test 'orientation: should save as landscape' do
-    stub_magick(640, 480) #defined this method
-    photo = @section.photos.create title: "foobar", image_filename: "test.jpg"
+    # stub_magick(640, 480) #defined this method
+    photo = @section.create_photo title: "foobar_l"
+    photo.image = File.open(Rails.root.join("app/assets/images/rails_l.png"))
+    photo.save
     assert_equal photo.orientation, "landscape", "Orientation not set to landscape."
   end
 
   test 'orientation: should save as portrait' do
-    stub_magick(480, 640)
-    photo = @section.photos.create title: "foobar", image_filename: "test.jpg"
+    # stub_magick(480, 640)
+    photo = @section.create_photo title: "foobar_p"
+    photo.image = File.open(Rails.root.join("app/assets/images/rails_p.png"))
+    photo.save
     assert_equal photo.orientation, "portrait", "Orientation not set to portrait."
   end
   ################################

@@ -10,7 +10,7 @@
     %section.post_image
     %section.post_body
       - post.sections.forward.each do |section|
-        = image_tag section.photo.image.post.url, class: "post_section_image", title: section.photo.title, alt: section.photo.title if section.photo
+        = image_tag(section.photo.image.post.url, class: "post_section_image", title: section.photo.title, alt: section.photo.title) if section.photo
         :textile
           #{section.body if section.body}
 

@@ -19,7 +19,7 @@ gem "bcrypt-ruby", :require => "bcrypt"
 # gem 'friendly_id'
 
 # storing images in amazon s3 with carrierwave
-gem 'carrierwave'
+gem 'carrierwave', git: 'git://github.com/jnicklas/carrierwave.git'
 gem 'fog'
 gem 'mini_magick'
 

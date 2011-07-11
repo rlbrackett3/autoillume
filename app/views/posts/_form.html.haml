@@ -4,21 +4,28 @@
     = f.label :title
     %br
     = f.text_field :title
-    = f.fields_for :sections do |section|
-      = section.fields_for :photo do |photo|
+    %br
+    %section.add_photo
+      Add a Photo.
+      = f.fields_for :photo_sections do |photo_section|
+        = photo_section.fields_for :photo do |photo|
+          %p.field
+            = photo.label :image
+            %br
+            = photo.file_field :image
+            = photo.hidden_field :image_cache
+            %p.field
+            = photo.label :title
+            %br
+            = photo.text_field :title
+    %br
+    %section.add_text
+      Add a Text Section.
+      = f.fields_for :text_sections do |text_section|
         %p.field
-          = photo.label :image
+          = text_section.label :body
           %br
-          = photo.file_field :image
-          = photo.hidden_field :image_cache
-        %p.field
-          = photo.label :title
-          %br
-          = photo.text_field :title
-      %p.field
-        = section.label :body
-        %br
-        = section.text_area :body
+          = text_section.text_area :body
   %p.field
     = f.label :published_at
     %br
