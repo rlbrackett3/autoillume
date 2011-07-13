@@ -19,6 +19,7 @@ class Post < ActiveRecord::Base
   # States and Transitions with state_machine gem
   state_machine :initial => :initial do
     event :preview do
+      transition :initial => :preview
       transition :draft => :preview
     end
 
@@ -34,13 +35,13 @@ class Post < ActiveRecord::Base
   #constants
   TITLE_MAX_LENGTH = 200
 
-  validates :title,                 presence: true,
-                                           length: { maximum: TITLE_MAX_LENGTH }
+  validates :title, presence: true,
+                    length: { maximum: TITLE_MAX_LENGTH }
   # validates :body,               presence: true
   # validates :published_at,  presence: true, allow_blank: true
-  validates :admin_id,        presence: true
-  validates :state,               presence: true
-  validates_associated :sections, :photo_sections, :text_sections
+  validates :admin_id, presence: true
+  validates :state, presence: true
+  validates_associated :sections, :photo_sections, :text_sections, :comments
 
   # scopes
   scope :drafts, where(state: 'draft')

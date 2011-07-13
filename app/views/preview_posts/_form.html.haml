@@ -1,0 +1,10 @@
+= form_for @preview_post do |f|
+  -if @preview_post.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@preview_post.errors.count, "error")} prohibited this preview_post from being saved:"
+      %ul
+        - @preview_post.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'
