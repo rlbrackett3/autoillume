@@ -1,9 +1,5 @@
-%article
-  %header
-    %h3= @post.title
-  %section
-    :textile
-      #{@post.body}
+= render 'post', object: @post
+
 %nav
   - if admin_logged_in?
     = link_to 'Edit', edit_post_path(@post)

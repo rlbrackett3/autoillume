@@ -26,6 +26,9 @@ gem 'mini_magick'
 # pagination
 # gem 'kaminari'
 
+# ordering and sorting with ranked-model
+gem 'ranked-model'
+
 # nested forms gem from ryan bates https://github.com/ryanb/nested_form.git
 gem 'nested_form', git: 'git://github.com/ryanb/nested_form.git'
 

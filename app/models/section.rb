@@ -1,6 +1,9 @@
 require 'carrierwave/orm/activerecord'
 
 class Section < ActiveRecord::Base
+  include RankedModel
+  ranks :position
+
   attr_accessible :body, :position, :photo_attributes, :post_id
 
   belongs_to :post
@@ -9,7 +12,7 @@ class Section < ActiveRecord::Base
   accepts_nested_attributes_for :photo, allow_destroy: true
 
   # Validations
-  validates :body,               length: { within: 3..4096, allow_blank: true }
+  validates :body,              length: { within: 3..4096, allow_blank: true }
   validates :position,          presence: true, on: :create
   # validates :post_id,           presence: true
   validates_associated :photo

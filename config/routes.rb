@@ -14,6 +14,7 @@ Autoillume::Application.routes.draw do
   resources :replies
   resources :comments
 
+  resources :preview_posts, only: [ :show, :edit, :update, :destroy ]
   resources :draft_posts, only: [ :index, :show ]
   resources :posts
   resources :sections

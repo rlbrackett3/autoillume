@@ -7,8 +7,8 @@ class Post < ActiveRecord::Base
   belongs_to :admin
   has_many :comments, dependent: :destroy
   has_many :sections, dependent: :destroy
-  has_many :photo_sections, dependent: :destroy, class_name: "Section"
-  has_many :text_sections, dependent: :destroy, class_name: "Section"
+  has_many :photo_sections, dependent: :destroy, class_name: "Section", conditions: { section_type: 'photo' }
+  has_many :text_sections, dependent: :destroy, class_name: "Section", conditions: { section_type: 'text' }
   # has_many :photos, through: :sections
 
   accepts_nested_attributes_for :sections, allow_destroy: true

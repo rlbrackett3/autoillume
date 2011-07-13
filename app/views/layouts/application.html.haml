@@ -31,7 +31,9 @@
             %li.nav_link= link_to "CONTACT", "#"
             %li.nav_link= link_to "FLICKR", "#"
             %li.nav_link= link_to "PINTEREST", "#"
-            - if admin_logged_in?
+
+          - if admin_logged_in?
+            %ul.nav_links.admin_nav_links
               %li.nav_link= link_to "New Post", new_post_path
               %li.nav_link= link_to "Pending Posts", draft_posts_path
               %li.nav_link= link_to "Pending Comments", "#"

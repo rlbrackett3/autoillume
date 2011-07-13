@@ -1,0 +1,14 @@
+%article.post
+  %p.post_date
+    - if object.published_at
+      = object.published_at.strftime('%B %e, %Y')
+    - else
+      = object.created_at.strftime('%B %e, %Y')
+  %header.post_header
+    %h1.post_title= link_to object.title, object, title: "#{truncate(object.text_sections.rank(:position).first.body, length: 64, omission: '...') if object.text_sections.any?}", class: "post_title_link" if object.title
+  - object.sections.rank(:position).each do |o|
+    %section.post_image
+      = image_tag o.photo.image.post.url, class: "post_section_image", title: "#{o.photo.title ||= o.photo.filname}", alt: "#{o.photo.title ||= o.photo.filname}" if o.photo
+    %section.post_body
+      :textile
+        #{o.body if o.body}

@@ -62,6 +62,15 @@ $right-column-width: 624px;
           list-style: none;
         }
       }
+      ul.admin_nav_links {
+        margin: 16px 0 0 0;
+        clear: both;
+
+        li.nav_link {
+          margin: 0;
+          list-style: none;
+        }
+      }
     }
   }
 
