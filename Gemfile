@@ -10,7 +10,7 @@ gem 'uglifier'
 gem 'jquery-rails'
 
 # admin / user authentication
-gem "bcrypt-ruby", :require => "bcrypt"
+# gem "bcrypt-ruby", :require => "bcrypt" #required by rails
 
 # Deploy with Heroku
 # gem 'heroku'
@@ -25,6 +25,9 @@ gem 'mini_magick'
 
 # pagination
 # gem 'kaminari'
+
+# nested forms gem from ryan bates https://github.com/ryanb/nested_form.git
+gem 'nested_form', git: 'git://github.com/ryanb/nested_form.git'
 
 # text formatting with textile
 gem 'RedCloth'

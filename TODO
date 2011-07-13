@@ -1,4 +1,12 @@
+*update seed file
+
 # Posts
+*link for admin to create a new post
+*link for admin to edit an existing post
+*link for admin to view pending posts
+*link for admin to view pending comments
+*link for admin to logout/login?
+
 *update show view to order sections and ofer comments.
 *set up section ordering in post edit
 

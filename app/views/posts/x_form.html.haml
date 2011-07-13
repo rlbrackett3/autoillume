@@ -1,0 +1,27 @@
+= nested_form_for @post do |f|
+  = f.error_messages
+  / post title field
+  %p.field
+    = f.label :title, "Post Title"
+    %br
+    = f.text_field :title
+    %br
+  / fields for adding a photo section
+  = f.fields_for :photo_sections
+    = f.link_to_add "Add a Photo.", :photo_sections
+    %br
+  / fields for adding a text section
+  = f.fields_for :text_sections
+    = f.link_to_add "Add a Text Section.", :text_sections
+  / posting date
+  %p.field
+    = f.label :published_at
+    %br
+    = f.datetime_select :published_at
+  / post publishing options
+  %p.field
+    = f.label :state
+    %br
+    = f.collection_select :state, @post.state_transitions, :event, :human_to_name
+  %p.actions
+    = f.submit

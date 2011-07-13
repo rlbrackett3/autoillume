@@ -1,0 +1,4 @@
+%section.add_photo
+  = f.fields_for :photo do |photo|
+    = render 'photo_fields', f: photo
+  = f.link_to_remove "Remove this Photo."

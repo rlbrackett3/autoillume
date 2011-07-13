@@ -5,6 +5,12 @@ GIT
     carrierwave (0.5.5)
       activesupport (~> 3.0)
 
+GIT
+  remote: git://github.com/ryanb/nested_form.git
+  revision: 57f32788f1952bcd633057b4b56b69b51df17610
+  specs:
+    nested_form (0.1.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -194,7 +200,6 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   annotate
-  bcrypt-ruby
   capistrano
   carrierwave!
   coffee-script
@@ -208,6 +213,7 @@ DEPENDENCIES
   jquery-rails
   mini_magick
   mocha
+  nested_form!
   nifty-generators
   pg
   rails (= 3.1.0.rc4)

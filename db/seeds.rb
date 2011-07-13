@@ -19,7 +19,7 @@ puts "DATABASE CLEAN AS A WHISTLE!"
 # create an Admin user
 puts "Creating an Admin user."
 default_admin = Admin.create(
-  username: "rlblood",
+  username: "testuser",
   email: "user@test.com",
   password: "foobar"
 )
@@ -27,23 +27,44 @@ default_admin.save
 puts "#{default_admin.username} successfully created!"
 
 puts "Creating a draft post."
-draft_post = Post.create(
-  title: 'Draft Post',
-  body: 'This is a draft post.',
-  admin_id: default_admin.id
+draft_post = default_admin.posts.create(
+  title: 'Draft Post'#,
+  # body: 'This is a draft post.'
 )
 draft_post.state = "draft"
 draft_post.save
 puts "Draft post created successfully."
 
 puts "Creating a published post."
-published_post = Post.create(
-  title: 'Published Post',
-  body: 'This is a published post.',
-  admin_id: default_admin.id
+published_post = default_admin.posts.create(
+  title: 'Published Post'#,
+  # body: 'This is a published post.'
 )
 published_post.state = "published"
 published_post.save
+
+puts "Creating a Photo Section."
+photo_section = published_post.photo_sections.create(
+  position: 0
+)
+photo = photo_section.build_photo(
+  title: "First image section."
+)
+# process the image with carrierwave
+photo.image = File.open("#{Rails.root}/app/assets/images/rails.png")
+photo.save
+photo_section.save
+puts "Photo Section created successfully."
+
+puts "Creating a Text Section."
+text_section = published_post.text_sections.create(
+  body: "This is a text section. It is capible of being formatted with *textile*.\n\n
+        h1. This should be a header.\n\n
+        This should be a new paragraph.\n
+        This should be a new line in this paragraph.",
+  position: 1
+)
+puts "Text Section created successfully."
 puts "Published post created successfully."
 
 puts "THE DATABASE IS NOW FILLED WITH SAMPLE DATA!"

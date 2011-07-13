@@ -4,7 +4,7 @@ class Section < ActiveRecord::Base
   attr_accessible :body, :position, :photo_attributes, :post_id
 
   belongs_to :post
-  has_one     :photo, dependent: :destroy
+  has_one    :photo, dependent: :destroy
 
   accepts_nested_attributes_for :photo, allow_destroy: true
 

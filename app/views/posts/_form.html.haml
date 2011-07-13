@@ -1,38 +1,52 @@
-= form_for(@post) do |f|
+= nested_form_for @post do |f|
   = f.error_messages
-  %p.field
-    = f.label :title
-    %br
-    = f.text_field :title
-    %br
-    %section.add_photo
-      Add a Photo.
-      = f.fields_for :photo_sections do |photo_section|
-        = photo_section.fields_for :photo do |photo|
-          %p.field
-            = photo.label :image
-            %br
-            = photo.file_field :image
-            = photo.hidden_field :image_cache
-            %p.field
-            = photo.label :title
-            %br
-            = photo.text_field :title
-    %br
-    %section.add_text
-      Add a Text Section.
-      = f.fields_for :text_sections do |text_section|
+  %fieldset
+
+    %p.field
+      = f.label :title, "Post Title"
+      %br/
+      = f.text_field :title
+    %p.field
+      = f.label :state
+      %br/
+      = f.collection_select :state, @post.state_transitions, :event, :human_to_name
+    %p.field
+      = f.label :published_at
+      %br/
+      = f.datetime_select :published_at
+
+    = f.fields_for :photo_sections do |photo_section_form|
+      / = render 'photo_section_fields', f: photo_section
+      %section.add_photo
         %p.field
-          = text_section.label :body
-          %br
-          = text_section.text_area :body
-  %p.field
-    = f.label :published_at
-    %br
-    = f.datetime_select :published_at
-  %p.field
-    = f.label :state
-    %br
-    = f.collection_select :state, @post.state_transitions, :event, :human_to_name#, include_blank: @post.human_state_name
-  %p.actions
-    = f.submit
+        = photo_section_form.fields_for :photo do |photo_form|
+          / = render 'photo_fields', f: photo
+          %p.field
+            = photo_form.label :image
+            %br/
+            = photo_form.file_field :image
+            = photo_form.hidden_field :image_cache
+          %p.field
+            = photo_form.label :title
+            %br/
+            = photo_form.text_field :title
+            %br/
+        = photo_section_form.link_to_add "[+] Add a photo.", :photo
+        = photo_section_form.link_to_remove "[-] Remove this photo section."
+    = f.link_to_add "[+] Add a photo section.", :photo_sections
+    %br/
+
+    = f.fields_for :text_sections do |text_section_form|
+      / = render 'text_section_fields', f: text_section
+      %section.add_text
+        %p.field
+          = text_section_form.label :body
+          %br/
+          = text_section_form.text_area :body
+          %br/
+          = text_section_form.link_to_remove "[-] Remove this text section."
+    = f.link_to_add "[+] Add a text section.", :text_sections
+    %br/
+
+    .actions
+      = f.submit 'Post'
