@@ -1,4 +1,4 @@
-= nested_form_for @post do |f|
+= nested_form_for @post, validate: true do |f|
   = f.error_messages
   %fieldset
     %p.field
@@ -15,15 +15,14 @@
       = f.datetime_select :published_at
 
     - @post.photo_sections.rank(:position).each do |photo_section|
-      - photo_section.photos.each do |photo|
-        = image_tag photo.image.thumb.url if photo.image
+      = image_tag photo_section.photo.image.thumb.url if photo_section.photo
 
     = f.fields_for :photo_sections do |photo_section_form|
       %section.add_photo
         .drag_handle
           DRAG HERE
         / = render 'photo_section_fields', f: photo_section_form
-        = photo_section_form.fields_for :photos do |photo_form|
+        = photo_section_form.fields_for :photo, validate: false do |photo_form|
           / = render 'photo_fields', f: photo_form
           %p.field
             = photo_form.label :image
@@ -35,8 +34,8 @@
             %br/
             = photo_form.text_field :title
             %br/
-          %p= photo_form.link_to_remove "[-] Remove this photo."
-        %p= photo_section_form.link_to_add "[+] Add a photo.", :photos, class: "add_photo_link"
+        /  %p= photo_form.link_to_remove "[-] Remove this photo."
+        /%p= photo_section_form.link_to_add "[+] Add a photo.", :photos, class: "add_photo_link"
         %p= photo_section_form.link_to_remove "[-] Remove this photo section."
     %p= f.link_to_add "[+] Add a photo section.", :photo_sections
 
@@ -55,3 +54,4 @@
 
     .actions
       = f.submit 'Post'
+

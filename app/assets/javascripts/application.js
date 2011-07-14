@@ -9,4 +9,8 @@
 //= require jquery_ujs
 //= require jquery.form
 //= require jquery.remotipart
+//= require rails.validations
+//= require nested_form
+//= require ./uploadify/jquery.uploadify.v2.1.4.js
+//= require ./uploadify/swfobject.js
 //= require_tree .

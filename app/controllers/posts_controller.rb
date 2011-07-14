@@ -28,28 +28,17 @@ class PostsController < ApplicationController
   def new
     find_admin
     @post = @admin.posts.new
+
     # build a text_section
-    # text_section = @post.text_sections.build
+    text_section = @post.text_sections.build unless @post.text_sections.any?
     # build a photo in a photo_section
-    # @photo_section = @post.photo_sections.build #unless @post.photo_sections.any?
-    # photo = @photo_section.build_photo
+    photo_section = @post.photo_sections.build unless @post.photo_sections.any?
+    photo = photo_section.build_photo if photo_section
 
     respond_to do |format|
       format.html # new.html.haml
       format.json { render json: @post }
     end
-  end
-
-  # GET /posts/1/edit
-  def edit
-    @post = Post.find(params[:id])
-    # build a text_section
-    # text_section = @post.text_sections.build unless @post.text_section.any?
-    # build a photo in a photo_section
-    # photo_section = @post.photo_sections.build unless @post.photo_sections.any?
-    # photo = photo_section.build_photo if photo_section
-    # section = @post.sections.build unless @post.sections.any?
-    # section.build_photo unless section.photo
   end
 
   # POST /posts
@@ -72,6 +61,18 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # GET /posts/1/edit
+  def edit
+    @post = Post.find(params[:id])
+
+    # build a text_section
+    text_section = @post.text_sections.build unless @post.text_sections.any?
+    # build a photo in a photo_section
+    photo_section = @post.photo_sections.build unless @post.photo_sections.any?
+    photo = photo_section.build_photo if photo_section
+
   end
 
   # PUT /posts/1

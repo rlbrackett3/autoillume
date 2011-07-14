@@ -1,4 +1,11 @@
 = render 'posts/post', object: @draft_post
+
+/ #photo
+/   = fields_for @photo do |f|
+/     = f.file_field :image, :rel => photos_path
+
+= photo_uploadify
+
 %nav
   - if admin_logged_in?
     = link_to 'Edit', edit_post_path(@draft_post)

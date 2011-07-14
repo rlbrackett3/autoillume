@@ -26,6 +26,9 @@ gem 'mini_magick'
 # pagination
 # gem 'kaminari'
 
+# client side validations
+gem 'client_side_validations'
+
 # ordering and sorting with ranked-model
 gem 'ranked-model'
 

@@ -24,7 +24,9 @@ class PhotosController < ApplicationController
   # GET /photos/new
   # GET /photos/new.json
   def new
-    @photo = Photo.new
+    @post = Post.find(params[:post])
+    photo_section = @post.photo_sections.build
+    @photo = photo_section.build_photo
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,7 +42,10 @@ class PhotosController < ApplicationController
   # POST /photos
   # POST /photos.json
   def create
-    @photo = Photo.new(params[:photo])
+    @post = Post.find(params[:post])
+    photo_section = @post.photo_sections.build
+    @photo = photo_section.build_photo(params[:photo])
+    # @photo = Photo.new(params[:photo])
 
     respond_to do |format|
       if @photo.save

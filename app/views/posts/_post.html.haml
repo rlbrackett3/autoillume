@@ -8,12 +8,13 @@
     %h1.post_title= link_to object.title, object, title: "#{truncate(object.text_sections.rank(:position).first.body, length: 64, omission: '...') if object.text_sections.any?}", class: "post_title_link" if object.title
   #sortable
     - object.sections.rank(:position).each do |o|
-      %section.post_image
-        - o.photos.each do |p|
-          = image_tag p.image.post.url, class: "post_section_image", title: "#{p.title ||= p.filename}", alt: "#{p.title ||= p.filname}" if p.image
-      %section.post_body
-        :textile
-          #{o.body if o.body}
+      - if o.section_type == "photo"
+        %section.post_image{ :id => "section_#{o.id}" }
+          = image_tag o.photo.image.post.url, class: "post_section_image", title: "#{o.photo.title ||= o.photo.filename}", alt: "#{o.photo.title ||= o.photo.filname}" if o.photo
+      - else
+        %section.post_text{ :id => "section_#{o.id}" }
+          :textile
+            #{o.body if o.body}
 
 - if admin_logged_in?
   = section_sortable
