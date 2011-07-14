@@ -1,6 +1,8 @@
 *update seed file
 
 # Posts
+*update show view to order sections and ofer comments.
+
 *link for admin to view pending comments
 *link for admin to logout/login?
 
@@ -9,8 +11,6 @@
 *when editing a post the photo thumbs should go with the photo section
 
 *set up section ordering in post edit
-
-*update show view to order sections and ofer comments.
 
 # Admin and Users
 *implement fuller tests for admin
