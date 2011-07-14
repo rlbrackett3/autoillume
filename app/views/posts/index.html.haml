@@ -1,21 +1,8 @@
 - @posts.each do |post|
-  %article.post
-    %p.post_date
-      - if post.published_at
-        = post.published_at.strftime('%B %e, %Y')
-      - else
-        = post.created_at.strftime('%B %e, %Y')
-    %header.post_header
-      %h1.post_title= link_to post.title, post, title: post.title, class: "post_title_link" if post.title
-    %section.post_image
-    %section.post_body
-      - post.sections.forward.each do |section|
-        = image_tag(section.photo.image.post.url, class: "post_section_image", title: section.photo.title, alt: section.photo.title) if section.photo
-        :textile
-          #{section.body if section.body}
+  = render 'post', object: post
 
-  - if admin_logged_in?
-    %ul
-      %li= link_to 'Edit', edit_post_path(post)
-      %li= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete
-      %li= link_to 'New Post', new_post_path
+  %nav
+    - if admin_logged_in?
+      = link_to 'Edit', edit_post_path(post)
+      \|
+      = link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete

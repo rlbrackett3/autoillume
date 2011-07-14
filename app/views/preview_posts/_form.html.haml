@@ -1,10 +1,17 @@
 = form_for @preview_post do |f|
-  -if @preview_post.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@preview_post.errors.count, "error")} prohibited this preview_post from being saved:"
-      %ul
-        - @preview_post.errors.full_messages.each do |msg|
-          %li= msg
+  = f.error_messages
+  %p.field
+    = f.label :title, "Post Title"
+    %br/
+    = f.text_field :title
+  %p.field
+    = f.label :state
+    %br/
+    = f.collection_select :state, @preview_post.state_transitions, :event, :human_to_name
+  %p.field
+    = f.label :published_at
+    %br/
+    = f.datetime_select :published_at
 
   .actions
     = f.submit 'Save'

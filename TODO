@@ -1,16 +1,16 @@
 *update seed file
 
 # Posts
-*link for admin to create a new post
-*link for admin to edit an existing post
-*link for admin to view pending posts
 *link for admin to view pending comments
 *link for admin to logout/login?
 
-*update show view to order sections and ofer comments.
+*figure out how to build a photo_section photo without having the 'add photo' link so that when 'add photo section' is clicked it builds the photo
+
+*when editing a post the photo thumbs should go with the photo section
+
 *set up section ordering in post edit
 
-*Implement dynamic nested form for adding sections to a new post.
+*update show view to order sections and ofer comments.
 
 # Admin and Users
 *implement fuller tests for admin

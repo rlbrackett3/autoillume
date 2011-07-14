@@ -32,6 +32,9 @@ gem 'ranked-model'
 # nested forms gem from ryan bates https://github.com/ryanb/nested_form.git
 gem 'nested_form', git: 'git://github.com/ryanb/nested_form.git'
 
+# integrate remote multipart file uploads with remotipart
+gem 'remotipart', '~> 0.4'
+
 # text formatting with textile
 gem 'RedCloth'
 

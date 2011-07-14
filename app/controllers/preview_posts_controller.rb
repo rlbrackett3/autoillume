@@ -1,4 +1,5 @@
 class PreviewPostsController < ApplicationController
+  before_filter  :admin_login_required
 
   # GET /preview_posts/1
   # GET /preview_posts/1.json
@@ -50,7 +51,7 @@ class PreviewPostsController < ApplicationController
 
     respond_to do |format|
       if @preview_post.update_attributes(params[:preview_post])
-        format.html { redirect_to post_path(@post), notice: 'Post was successfully updated.' }
+        format.html { redirect_to post_path(@preview_post), notice: 'Post was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

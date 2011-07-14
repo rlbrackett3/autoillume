@@ -1,11 +1,24 @@
-%article
-  %header
-    %h3= @draft_post.title
-  %section
-    :textile
-      #{@draft_post.body}
+= render 'posts/post', object: @draft_post
 %nav
   - if admin_logged_in?
     = link_to 'Edit', edit_post_path(@draft_post)
-    |
+    \|
+    = link_to 'Destroy', @draft_post, confirm: 'Are you sure?', method: :delete
+    \|
   = link_to 'Back', draft_posts_path
+- if @draft_post.state == "draft"
+  %section.draft_post
+    %header
+      %h3 This post is a draft.
+      = form_for @draft_post do |f|
+        %fieldset
+          %p.field
+            = f.label :state, "Publish this post?"
+            %br/
+            = f.collection_select :state, @draft_post.state_transitions, :event, :human_to_name
+          %p.field
+            = f.label :published_at
+            %br/
+            = f.datetime_select :published_at
+          .actions
+            = f.submit 'Post'

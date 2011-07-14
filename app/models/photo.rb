@@ -5,6 +5,7 @@ class Photo < ActiveRecord::Base
 
   # Associations
   belongs_to :section
+  # belongs_to :post
 
  # CarrierWave
   mount_uploader :image, ImageUploader

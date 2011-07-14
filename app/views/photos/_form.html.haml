@@ -5,6 +5,7 @@
     = f.label :title
     = f.text_field :title
   %p.field
+    = image_tag @photo.image.thumb.url if @photo.image
     = f.label :image
     = f.file_field :image
     = f.hidden_field :image_cache

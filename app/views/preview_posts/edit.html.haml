@@ -1,7 +1,14 @@
-= render 'posts/post'
+%header
+  %h1 This is a preview of your post.
+  %p You can arrange the photos and text by dragging them.
+  Click #{link_to 'here', edit_post_path(@preview_post)} to edit specific text or images
 
-= render 'form'
+= render 'posts/post', object: @preview_post
+%section.post_edit
+  %header
+    %h2 Edit basic post options.
+  = render 'form'
 
-= link_to 'Show', @preview_post
-\|
-= link_to 'Back', preview_posts_path
+/ = link_to 'Show', @preview_post
+/ \|
+/ = link_to 'Back', preview_posts_path

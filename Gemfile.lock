@@ -152,6 +152,7 @@ GEM
     ranked-model (0.0.4)
       activerecord (>= 3.0.3)
     rdoc (3.8)
+    remotipart (0.4.1)
     ruby-debug-base19 (0.11.25)
       columnize (>= 0.3.1)
       linecache19 (>= 0.5.11)
@@ -220,6 +221,7 @@ DEPENDENCIES
   pg
   rails (= 3.1.0.rc4)
   ranked-model
+  remotipart (~> 0.4)
   ruby-debug19
   ruby-graphviz
   sass

@@ -28,9 +28,11 @@ class PostsController < ApplicationController
   def new
     find_admin
     @post = @admin.posts.new
+    # build a text_section
     # text_section = @post.text_sections.build
-    # photo_section = @post.photo_sections.build
-    # photo = photo_section.build_photo
+    # build a photo in a photo_section
+    # @photo_section = @post.photo_sections.build #unless @post.photo_sections.any?
+    # photo = @photo_section.build_photo
 
     respond_to do |format|
       format.html # new.html.haml
@@ -41,7 +43,12 @@ class PostsController < ApplicationController
   # GET /posts/1/edit
   def edit
     @post = Post.find(params[:id])
-    section = @post.sections.build unless @post.sections.any?
+    # build a text_section
+    # text_section = @post.text_sections.build unless @post.text_section.any?
+    # build a photo in a photo_section
+    # photo_section = @post.photo_sections.build unless @post.photo_sections.any?
+    # photo = photo_section.build_photo if photo_section
+    # section = @post.sections.build unless @post.sections.any?
     # section.build_photo unless section.photo
   end
 
@@ -53,8 +60,13 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to edit_preview_post_path(@post), notice: 'Post was successfully created.' }
-        format.json { render json: @post, status: :created, location: @post }
+        if @post.state == "draft"
+          format.html { redirect_to draft_post_path(@post), notice: 'Post was successfully created.' }
+          format.json { render json: @post, status: :created, location: @post }
+        elsif @post.state == "published"
+          format.html { redirect_to post_path(@post), notice: 'Post was successfully created.' }
+          format.json { render json: @post, status: :created, location: @post }
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @post.errors, status: :unprocessable_entity }
@@ -69,7 +81,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html { redirect_to post_path(@post), notice: 'Post was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

@@ -12,16 +12,16 @@ class Post < ActiveRecord::Base
   # has_many :photos, through: :sections
 
   accepts_nested_attributes_for :sections, allow_destroy: true
-  accepts_nested_attributes_for :photo_sections, allow_destroy: true
-  accepts_nested_attributes_for :text_sections, allow_destroy: true
+  accepts_nested_attributes_for :photo_sections, allow_destroy: true,:reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
+  accepts_nested_attributes_for :text_sections, allow_destroy: true,:reject_if => proc { |attrs| attrs.all? { |k, v| v.blank? } }
   # accepts_nested_attributes_for :photos, allow_destroy: true
 
   # States and Transitions with state_machine gem
   state_machine :initial => :initial do
-    event :preview do
-      transition :initial => :preview
-      transition :draft => :preview
-    end
+    # event :preview do
+    #   transition :initial => :preview
+    #   # transition :draft => :preview
+    # end
 
     event :draft do
       transition all => :draft
@@ -41,7 +41,7 @@ class Post < ActiveRecord::Base
   # validates :published_at,  presence: true, allow_blank: true
   validates :admin_id, presence: true
   validates :state, presence: true
-  validates_associated :sections, :photo_sections, :text_sections, :comments
+  validates_associated :sections, :photo_sections, :text_sections, :comments#, :photos
 
   # scopes
   scope :drafts, where(state: 'draft')
