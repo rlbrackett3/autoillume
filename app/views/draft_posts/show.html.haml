@@ -6,6 +6,7 @@
     = link_to 'Destroy', @draft_post, confirm: 'Are you sure?', method: :delete
     \|
   = link_to 'Back', draft_posts_path
+
 - if @draft_post.state == "draft"
   %section.draft_post
     %header

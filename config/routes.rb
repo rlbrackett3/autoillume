@@ -17,7 +17,11 @@ Autoillume::Application.routes.draw do
   resources :preview_posts, only: [ :show, :edit, :update, :destroy ]
   resources :draft_posts, only: [ :index, :show ]
   resources :posts
-  resources :sections
+  resources :sections do
+    collection do
+      post 'sort'
+    end
+  end
   resources :photos
 
   resources :pages

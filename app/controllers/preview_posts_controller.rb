@@ -39,26 +39,26 @@ class PreviewPostsController < ApplicationController
   #   end
   # end
 
-  # GET /preview_posts/1/edit
-  def edit
-    @preview_post = Post.find(params[:id])
-  end
+  # # GET /preview_posts/1/edit
+  # def edit
+  #   @preview_post = Post.find(params[:id])
+  # end
 
-  # PUT /preview_posts/1
-  # PUT /preview_posts/1.json
-  def update
-    @preview_post = Post.find(params[:id])
+  # # PUT /preview_posts/1
+  # # PUT /preview_posts/1.json
+  # def update
+  #   @preview_post = Post.find(params[:id])
 
-    respond_to do |format|
-      if @preview_post.update_attributes(params[:preview_post])
-        format.html { redirect_to post_path(@preview_post), notice: 'Post was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @preview_post.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #   respond_to do |format|
+  #     if @preview_post.update_attributes(params[:preview_post])
+  #       format.html { redirect_to post_path(@preview_post), notice: 'Post was successfully updated.' }
+  #       format.json { head :ok }
+  #     else
+  #       format.html { render action: "edit" }
+  #       format.json { render json: @preview_post.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /preview_posts/1
   # DELETE /preview_posts/1.json

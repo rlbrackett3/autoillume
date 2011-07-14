@@ -6,10 +6,14 @@
       = object.created_at.strftime('%B %e, %Y')
   %header.post_header
     %h1.post_title= link_to object.title, object, title: "#{truncate(object.text_sections.rank(:position).first.body, length: 64, omission: '...') if object.text_sections.any?}", class: "post_title_link" if object.title
-  - object.sections.rank(:position).each do |o|
-    %section.post_image
-      - o.photos.each do |p|
-        = image_tag p.image.post.url, class: "post_section_image", title: "#{p.title ||= p.filename}", alt: "#{p.title ||= p.filname}" if p.image
-    %section.post_body
-      :textile
-        #{o.body if o.body}
+  #sortable
+    - object.sections.rank(:position).each do |o|
+      %section.post_image
+        - o.photos.each do |p|
+          = image_tag p.image.post.url, class: "post_section_image", title: "#{p.title ||= p.filename}", alt: "#{p.title ||= p.filname}" if p.image
+      %section.post_body
+        :textile
+          #{o.body if o.body}
+
+- if admin_logged_in?
+  = section_sortable

@@ -80,4 +80,12 @@ class SectionsController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  # action for sorting images through the app
+  def sort
+    params[:section].each_with_index do |id, index|
+      Section.update_all(['position=?', index + 1], ['id=?', id])
+    end
+    render :nothing => true
+  end
 end
