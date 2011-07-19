@@ -1,6 +1,7 @@
 %h1 Listing pages
 %table#sortable_pages
   %tr
+    %th Order
     %th Title
     %th Permalink
     %th Content
@@ -9,9 +10,8 @@
     %th
   - @pages.each do |page|
     %tr.page{ :id => "page_#{page.id}" }
-      %td
-        [drag]
-        = link_to page.title, static_path(page.permalink), title: "View your #{page.title} page."
+      %td &dagger;drag&dagger;
+      %td= link_to page.title, static_path(page.permalink), title: "View your #{page.title} page."
       %td= " . . . /static/#{page.permalink}"
       %td= truncate(page.content, length: 32, omission: '...')
       - if admin_logged_in?
