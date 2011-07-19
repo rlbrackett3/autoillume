@@ -58,4 +58,6 @@ class AdminsControllerTest < ActionController::TestCase
     put :update, :id => "ignored"
     assert_redirected_to root_url
   end
+
+
 end

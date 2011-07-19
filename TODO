@@ -1,9 +1,7 @@
 *update seed file
 
 # Posts
-*update show view to order sections and ofer comments.
 
-*link for admin to view pending comments
 *link for admin to logout/login?
 
 *figure out how to build a photo_section photo without having the 'add photo' link so that when 'add photo section' is clicked it builds the photo
@@ -17,6 +15,8 @@
   *refactor authentication for integration with rails 3.1
 
 # Comments and Replies
+*
+
 *implement reply system for comments
   *test reply controller
 *restrict reply new create edit update destroy to logged in admin

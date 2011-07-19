@@ -88,6 +88,7 @@ group :development, :test do
    gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'database_cleaner'
+  gem 'autotest-rails'
 end
 
 # test only gems

@@ -47,6 +47,10 @@ class Post < ActiveRecord::Base
   scope :drafts, where(state: 'draft')
   scope :published, where(state: 'published')
 
+  def draft_post_count
+    Post.drafts.count
+  end
+
 end
 
 

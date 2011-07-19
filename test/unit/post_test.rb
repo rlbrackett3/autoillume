@@ -64,6 +64,10 @@ class PostTest < ActiveSupport::TestCase
   test 'should respond to admin association' do
     assert @post.admin_id, "Post does not respond and admin assoc."
   end
+
+  test 'should respond to draft_post_count' do
+    assert @post.draft_post_count, "Post does not respond to draft_post_count"
+  end
   ################################
 
   # accessible attr
@@ -184,6 +188,10 @@ class PostTest < ActiveSupport::TestCase
 
   ################################
 
+  # methods
+  ################################
+
+  ################################
 
 end
 

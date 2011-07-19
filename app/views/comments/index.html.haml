@@ -1,17 +1,23 @@
-%h1 Listing comments
+%header
+  %h1 Listing comments
 
-%table
-  %tr
-    %th
-    %th
-    %th
-
-  - @comments.each do |comment|
-    %tr
-      %td= link_to 'Show', comment
-      %td= link_to 'Edit', edit_comment_path(comment)
-      %td= link_to 'Destroy', comment, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'New Comment', new_comment_path
+%section.approved
+  %header
+    %h2 Approved Comments
+  - @posts.each do |post|
+    %p= link_to post.title, post_path(post)
+    %ul.comments_approved
+      - post.comments.approved.each do |approved|
+        %li.comment_approved
+          = render 'comments/comment', comment: approved
+          %nav
+            = button_to "Destroy Comment", { action: 'destroy', controller: 'comments', id: approved.id, post_id: post.id }, confirm: "Are you sure?", method: :delete
+    %ul.comments_unapproved
+      - post.comments.unapproved.each do |unapproved|
+        %li.comment_unapproved
+          = render 'comments/comment', comment: unapproved
+          %nav
+            = form_for [ post, unapproved ], method: :put  do |f|
+              = f.hidden_field :state, value: "approved"
+              = f.submit "Approve Comment"
+            = button_to "Destroy Comment", { action: 'destroy', controller: 'comments', id: unapproved.id, post_id: post.id }, confirm: "Are you sure?", method: :delete

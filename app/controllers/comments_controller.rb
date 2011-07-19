@@ -1,9 +1,13 @@
 class CommentsController < ApplicationController
+  before_filter  :admin_login_required, only: [ :index, :edit, :update, :destroy ]
   # GET /comments
   # GET /comments.json
   def index
-    find_post
-    @comments = post.comments.order('created_at ASC')
+    @posts = Post.published.order('created_at ASC')
+
+    @comments = Comment.all
+    @approved_comments = Comment.approved.order('created_at ASC')
+    @unapproved_comments = Comment.unapproved.order('created_at ASC')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -46,7 +50,6 @@ class CommentsController < ApplicationController
   def create
     find_post
     @comment = @post.comments.new(params[:comment])
-    # @comment = Comment.new(params[:comment])
 
     respond_to do |format|
       if @comment.save
