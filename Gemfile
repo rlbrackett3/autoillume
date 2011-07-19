@@ -76,6 +76,7 @@ group :development do
   gem 'foreman'
   # more descriptive models
   gem 'annotate'
+  # gem 'annotate', :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'
   # Ryan Bates nifty generators
   gem 'nifty-generators'
   # haml and sass support for rails
@@ -85,7 +86,7 @@ end
 
 # gems used in testing and development
 group :development, :test do
-   gem 'factory_girl_rails'
+  gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'database_cleaner'
   gem 'autotest-rails'
@@ -96,6 +97,6 @@ group :test do
   gem 'sqlite3'
   # Pretty printed test output
   gem 'turn', :require => false
-  # Mocks fro testing
+  # Mocks and Stubs for testing
   gem 'mocha'
 end

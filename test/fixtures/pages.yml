@@ -4,16 +4,19 @@ one:
   title: MyString
   permalink: MyString
   content: MyText
+  page_order: 1
 
 two:
   title: MyString
   permalink: MyString
   content: MyText
+  page_order: 2
 
 about:
   title: About
   permalink: About
   content: This is a page about the blog.
+  page_order: 0
 
 # == Schema Information
 #

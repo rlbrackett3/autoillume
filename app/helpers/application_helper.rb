@@ -24,6 +24,30 @@ module ApplicationHelper
     }.gsub(/[\n ]+/, ' ').strip.html_safe
   end
 
+  def page_sortable
+    %Q{
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $('#sortable_pages').sortable( {
+            dropOnEmpty: false,
+            cursor: 'crosshair',
+            opacity: 0.75,
+            scroll: true,
+            items: 'tr',
+            update: function() {
+              $.ajax( {
+                type:     'post',
+                data:     $('#sortable_pages').sortable('serialize'),
+                dataType: 'script',
+                url:      '#{sort_pages_path}'
+                } )
+              }
+            });
+          });
+      </script>
+    }.gsub(/[\n ]+/, ' ').strip.html_safe
+  end
+
   def photo_uploadify
   #   # Putting the uploadify trigger script in the helper gives us
   #   # full access to the view and native rails objects without having

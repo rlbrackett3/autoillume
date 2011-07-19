@@ -26,7 +26,7 @@
           Hi there, I’m Laura. This is a description of what goes on at Illume, and how, if you read this you can be awesome. This could go on for maybe a sentence more. Or maybe there could be one more sentence! { read more }
         %nav.left_nav
           %ul.nav_links.pages
-            - @pages.each do |page|
+            - @pages.rank(:page_order).each do |page|
               %li.nav_link.page= link_to page.title.to_s.upcase, static_path(page.permalink), title: page.title, description: truncate(page.content, length: 64, omission: '...')
             - if admin_logged_in?
               %li.nav_link.page= link_to "( add a static page )", new_page_path, title: "You can add new static pages to the menu here."

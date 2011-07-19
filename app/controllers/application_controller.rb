@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   private
 
   def load_static_pages
-    @pages = Page.all
+    @pages = Page.rank(:page_order)
   end
 
   # def admin_logged_in?

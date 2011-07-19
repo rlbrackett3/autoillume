@@ -67,4 +67,9 @@ text_section = published_post.text_sections.create(
 puts "Text Section created successfully."
 puts "Published post created successfully."
 
+puts "Creating static pages."
+Page.create(title: 'About', permalink: 'about', content: 'A page about this site.')
+Page.create(title: 'Contact', permalink: 'contact', content: 'Ways to contact the site author.')
+puts "Static pages created successfully."
+
 puts "THE DATABASE IS NOW FILLED WITH SAMPLE DATA!"

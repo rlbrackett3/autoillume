@@ -88,6 +88,16 @@ class PageTest < ActiveSupport::TestCase
     assert_protected_attribute Page, :id
   end
 
+  # for use with ranked_model
+  test 'should respond to page_order' do
+    assert @page.page_order, "Failed to respond to page_order attr."
+  end
+
+  test 'should assign 0 as default page_order position' do
+    page = Page.new(@page.attributes)
+    assert_equal page.page_order, 0, "Failed to set default page_order to 0."
+  end
+
 end
 
 # == Schema Information

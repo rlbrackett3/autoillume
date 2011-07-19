@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    @pages = Page.all
+    @pages = Page.rank(:page_order)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -81,6 +81,13 @@ class PagesController < ApplicationController
       format.html { redirect_to pages_url }
       format.json { head :ok }
     end
+  end
+
+  def sort
+    params[:page].each_with_index do |id, index|
+      Page.update_all(['page_order=?', index + 1], ['id=?', id])
+    end
+    render :nothing => true
   end
 
   private

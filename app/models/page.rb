@@ -1,10 +1,14 @@
 class Page < ActiveRecord::Base
-  attr_accessible :title, :permalink, :content
+  include RankedModel #test for this
+  ranks :page_order #test for this
+
+  attr_accessible :title, :permalink, :content, :page_order
 
   validates :title,               presence: true,
                                           uniqueness: true
   validates  :permalink,    presence: true,
                                           uniqueness: true
+  validates :page_order,    presence: true
 end
 
 # == Schema Information
