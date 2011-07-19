@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  attr_accessible :name, :email, :url, :body
+  attr_accessible :name, :email, :url, :body, :state
 
   belongs_to :post
   has_many  :replies, dependent: :destroy

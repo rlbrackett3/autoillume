@@ -7,3 +7,32 @@
     = link_to 'Destroy', @post, confirm: 'Are you sure?', method: :delete
     \|
   = link_to 'Back', posts_path
+
+%section.comments
+  %h1 Comments go here.
+
+  %header
+    %p
+      = pluralize(@post.comments.count, 'comment')
+      %span= link_to "( leave your thoughts )", ".comment_form"
+
+  %section.comment_form
+    = render 'comments/form', {post: @post, comment: @comment}
+
+  %section.comments_list
+    %ul
+      - @post.comments.approved.each do |comment|
+        %li= render 'comments/comment', comment: comment
+
+    - if admin_logged_in?
+      Unapproved Comments
+      %ul
+        - @post.comments.unapproved.each do |comment|
+          %li
+            = render 'comments/comment', comment: comment
+            = form_for [ @post, comment ], method: :put  do |f|
+              = f.hidden_field :state, value: "approved"
+              = f.submit "Approve Comment"
+            = button_to "Destroy Comment", { action: 'destroy', controller: 'comments', id: comment.id, post_id: @post.id }, confirm: "Are you sure?", method: :delete
+
+

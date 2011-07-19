@@ -1,23 +1,22 @@
-= form_for @comment do |f|
+= form_for [ post, comment ], validate: true, html: { id: "comment_form_#{ post.id }" } do |f|
   = f.error_messages
-
   %p.field
-    = f.label :name
+    = f.label :name, "name*"
     %br/
-    = f.text_field :name
+    = f.text_field :name, placeholder: "name*"
   %p.field
-    = f.label :email
-    (your email will not be shared)
+    = f.label :email, "email*"
     %br/
-    = f.text_field :email
+    = f.text_field :email, placeholder: "email address* (not shown)"
   %p.field
-    = f.label :url
+    = f.label :url, "URL"
     %br/
-    = f.text_field :url
+    = f.text_field :url, placeholder: "URL (share your website)"
   %p.field
-    = f.label :body
-    (supports textile formatting)
+    = f.label :body, "comments*"
     %br/
-    = f.text_area :body
+    = f.text_area :body, placeholder: "comments* (supports textile)"
+    %br/
+    * = required
   %p.actions
-    = f.submit 'Save'
+    = f.submit 'Post'

@@ -1,0 +1,30 @@
+var el = $('<%= escape_javascript("#comment_form_#{@post.id}")%>');
+
+<% if @comment.errors.any? %>
+  // Create a list of errors
+  var errors = $('<ul></ul>');
+
+  <% @comment.errors.full_messages.each do |error| %>
+    errors.append('<li><%= escape_javascript( error ) %></li>');
+  <% end %>
+  // Display errors on form
+  el.find('p.errors').html(errors).fadeIn(1000);
+
+<% else %>
+  // store element IDs in variables
+  var commentsList = $('#<%= escape_javascript("comments_list") %>');
+  var commentForm = $('#<%= escape_javascript("comment_form_#{@post.id}") %>');
+
+  // render partial to display comment
+  $(commentsList).append("<%= escape_javascript(render 'comments/show') %>");
+
+  // update comment count
+
+  var d = new Date();
+  $(commentImage).attr("src", "/images/comment_blue.png?"+d.getTime());
+
+  // Clear forms
+  el.find('input:text,textarea').val('');
+  el.find('.errors').empty();
+
+<% end %>

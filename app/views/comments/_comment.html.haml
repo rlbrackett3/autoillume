@@ -1,0 +1,6 @@
+%article.comment
+  %header.comment_name
+    %h3= link_to comment.name, comment.url
+  %section.comment_body
+    :textile
+      #{comment.body}
