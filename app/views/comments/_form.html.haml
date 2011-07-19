@@ -1,4 +1,5 @@
-- @post ||= post
+- post ||= @post
+- comment ||= @comment
 = form_for [ post, comment ], validate: true, html: { id: "comment_form_#{ post.id }" } do |f|
   = f.error_messages
   %p.field
