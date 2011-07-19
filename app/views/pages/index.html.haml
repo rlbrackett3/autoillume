@@ -9,13 +9,12 @@
     %th
   - @pages.each do |page|
     %tr
-      %td= page.title
-      %td= page.permalink
-      %td= page.content
-      %td= link_to 'Show', page_path(page)
+      %td= link_to page.title, static_path(page.permalink), title: "View your #{page.title} page."
+      %td= " . . . /static/#{page.permalink}"
+      %td= truncate(page.content, length: 32, omission: '...')
       - if admin_logged_in?
-        %td= link_to 'Edit', edit_page_path(page)
-        %td= link_to 'Destroy', page, confirm: 'Are you sure?', method: :delete
+        %td= link_to 'Edit', edit_static_path(page.permalink)
+        %td= link_to 'Destroy', static_path(page.permalink), confirm: 'Are you sure?', method: :delete
 - if admin_logged_in?
   %br/
   = link_to 'New Page', new_page_path

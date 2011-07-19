@@ -26,6 +26,9 @@ Autoillume::Application.routes.draw do
   end
   resources :photos
 
+  get 'static/:permalink' => 'pages#show', as: :static
+  get 'static/:permalink/edit' => 'pages#edit', as: :edit_static
+  delete 'static/:permalink' => 'pages#destroy', as: :static, method: :delete
   resources :pages
 
   root :to => 'posts#index'

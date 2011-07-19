@@ -31,7 +31,7 @@ class PagesControllerTest < ActionController::TestCase
       post :create, page: { title:  "foo", permalink: "bar", content: "foobar" }
     end
 
-    assert_redirected_to page_path(assigns(:page))
+    assert_redirected_to static_path(assigns(:page).permalink)
   end
 
   test "should show page" do
@@ -48,7 +48,7 @@ class PagesControllerTest < ActionController::TestCase
   test "should update page" do
     login_admin
     put :update, id: @page.to_param, page: @page.attributes
-    assert_redirected_to page_path(assigns(:page))
+    assert_redirected_to static_path(assigns(:page).permalink)
   end
 
   test "should destroy page" do

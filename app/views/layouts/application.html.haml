@@ -26,8 +26,11 @@
           Hi there, I’m Laura. This is a description of what goes on at Illume, and how, if you read this you can be awesome. This could go on for maybe a sentence more. Or maybe there could be one more sentence! { read more }
         %nav.left_nav
           %ul.nav_links.pages
-            %li.nav_link.page= link_to "ABOUT", "#"
-            %li.nav_link.page= link_to "CONTACT", "#"
+            - @pages.each do |page|
+              %li.nav_link.page= link_to page.title.to_s.upcase, static_path(page.permalink), title: page.title, description: truncate(page.content, length: 64, omission: '...')
+            - if admin_logged_in?
+              %li.nav_link.page= link_to "( add a static page )", new_page_path, title: "You can add new static pages to the menu here."
+              %li.nav_link.page= link_to "( manage static page )", pages_path, title: "You can manage static pages here."
           %ul.nav_links.external_links
             %li.nav_link.external_link= link_to "FLICKR", "#"
             %li.nav_link.external_link= link_to "PINTEREST", "#"
@@ -35,8 +38,9 @@
           - if admin_logged_in?
             %ul.nav_links.admin_nav_links
               %li.nav_link= link_to "New Post", new_post_path
-              %li.nav_link= link_to "#{pluralize Post.drafts.count, 'Draft'} ", draft_posts_path
+              %li.nav_link= link_to "#{pluralize Post.drafts.count, 'Draft Post'} ", draft_posts_path
               %li.nav_link= link_to "#{pluralize Comment.unapproved.count, 'Pending Comment'}", comments_path
+              %li.nav_link= link_to "logout ( #{ current_admin.username if current_admin.username} )", logout_path
       %section#right_column
         = yield
 

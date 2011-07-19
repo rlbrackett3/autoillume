@@ -26,6 +26,12 @@ ul, li {
   list-style: none;
 }
 
+th, td {
+  padding: 0 8px;
+  text-align: left;
+  vertical-align: bottom;
+}
+
 pre {
   background-color: #eee;
   padding: 10px;

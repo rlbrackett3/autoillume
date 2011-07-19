@@ -3,7 +3,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   # force_ssl
 
+  before_filter :load_static_pages
+
   private
+
+  def load_static_pages
+    @pages = Page.all
+  end
 
   # def admin_logged_in?
   #   current_admin

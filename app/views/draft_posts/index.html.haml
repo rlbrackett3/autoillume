@@ -10,7 +10,7 @@
     %th
   - @draft_posts.each do |post|
     %tr
-      %td= link_to post.title, draft_post_path(post), title: "#{truncate(post.text_sections.rank(:position).first.body, length: 64, omission: '...') || post.title }", class: "post_title_link" if post.title
+      %td= link_to post.title, draft_post_path(post), title: "Click here to reorder the images and text of this post.", class: "post_title_link" if post.title
       %td
         %ul
           - post.photo_sections.rank(:position).each do |photo_section|
