@@ -5,3 +5,31 @@
 body.draft_posts {
   // Place scoped styles here
 }
+
+table.draft_posts {
+  table-layout: auto;
+  text-align: left;
+  vertical-align: bottom;
+  tr {
+    width: 480px;
+    min-height: 12px;
+    th {
+
+    }
+    td {
+      min-width: 24px;
+      max-width: 256px;
+      height: 52px;
+      padding: 0 4px 0 0;
+      ul {
+        position: relative;
+        float: left;
+        li {
+          position: relative;
+          float: left;
+          margin: 0 1px;
+        }
+      }
+    }
+  }
+}

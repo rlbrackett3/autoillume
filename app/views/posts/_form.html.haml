@@ -15,7 +15,7 @@
       = f.datetime_select :published_at
 
     - @post.photo_sections.rank(:position).each do |photo_section|
-      = image_tag photo_section.photo.image.thumb.url if photo_section.photo
+      = image_tag(photo_section.photo.image.thumb.url, title: "#{photo_section.photo.title ||= photo_section.photo.filename}", alt: "#{photo_section.photo.title ||= photo_section.photo.filname}") if photo_section.photo
 
     = f.fields_for :photo_sections do |photo_section_form|
       %section.add_photo

@@ -1,16 +1,22 @@
-%h1 Listing draft_posts
-%table
+%header
+  %h1 Listing Draft Posts
+
+%table.draft_posts
   %tr
     %th Title
-    %th Body
-    %th
+    %th Images
+    %th Created
     %th
     %th
   - @draft_posts.each do |post|
     %tr
-      %td= post.title
-      %td= post.body
-      %td= link_to 'Show', draft_post_path(post)
+      %td= link_to post.title, draft_post_path(post), title: "#{truncate(post.text_sections.rank(:position).first.body, length: 64, omission: '...') || post.title }", class: "post_title_link" if post.title
+      %td
+        %ul
+          - post.photo_sections.rank(:position).each do |photo_section|
+            %li
+              = image_tag photo_section.photo.image.thumb.url, title: "#{photo_section.photo.title ||= photo_section.photo.filename}", alt: "#{photo_section.photo.title ||= photo_section.photo.filname}" if photo_section.photo
+      %td= post.created_at.strftime('%B %e, %Y')
       - if admin_logged_in?
         %td= link_to 'Edit', edit_post_path(post)
         %td= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete
