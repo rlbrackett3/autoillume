@@ -16,7 +16,7 @@ gem 'jquery-rails'
 # gem "bcrypt-ruby", :require => "bcrypt" #required by rails
 
 # Deploy with Heroku
-# gem 'heroku'
+gem 'heroku'
 
 # friendly urls (slugging)
 # gem 'friendly_id'
@@ -46,6 +46,7 @@ gem 'RedCloth'
 
 # Use unicorn as the web server
 gem 'unicorn'
+gem 'foreman'
 
 # Deploy with Capistrano
 gem 'capistrano'
