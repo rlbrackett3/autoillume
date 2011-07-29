@@ -72,4 +72,9 @@ Page.create(title: 'About', permalink: 'about', content: 'A page about this site
 Page.create(title: 'Contact', permalink: 'contact', content: 'Ways to contact the site author.')
 puts "Static pages created successfully."
 
+puts "Creating external links."
+ExternalLink.create(title: 'Flickr', url: 'http://flickr.com/', description: 'My Flickr photo feed.')
+ExternalLink.create(title: 'Facebook', url: 'http://facebook.com/', description: 'Find me on facebook.')
+puts "External links created successfully."
+
 puts "THE DATABASE IS NOW FILLED WITH SAMPLE DATA!"

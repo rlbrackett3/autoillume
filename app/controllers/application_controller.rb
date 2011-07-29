@@ -3,12 +3,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   # force_ssl
 
-  before_filter :load_static_pages
+  before_filter :load_static_pages, :load_external_links
 
   private
 
   def load_static_pages
     @pages = Page.rank(:page_order)
+  end
+
+  def load_external_links
+    # @external_links = ExternalLinks.rank(:link_order)
   end
 
   # def admin_logged_in?

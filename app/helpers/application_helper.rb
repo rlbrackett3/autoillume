@@ -24,11 +24,11 @@ module ApplicationHelper
     }.gsub(/[\n ]+/, ' ').strip.html_safe
   end
 
-  def page_sortable
+  def table_sortable
     %Q{
       <script type="text/javascript">
         $(document).ready(function() {
-          $('#sortable_pages').sortable( {
+          $('#sortable_table').sortable( {
             dropOnEmpty: false,
             cursor: 'crosshair',
             opacity: 0.75,
@@ -37,7 +37,7 @@ module ApplicationHelper
             update: function() {
               $.ajax( {
                 type:     'post',
-                data:     $('#sortable_pages').sortable('serialize'),
+                data:     $('#sortable_table').sortable('serialize'),
                 dataType: 'script',
                 url:      '#{sort_pages_path}'
                 } )

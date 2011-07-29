@@ -1,5 +1,5 @@
 %h1 Listing pages
-%table#sortable_pages
+%table#sortable_table
   %tr
     %th Order
     %th Title
@@ -20,4 +20,4 @@
 - if admin_logged_in?
   %br/
   = link_to 'New Page', new_page_path
-  = page_sortable
+  = table_sortable

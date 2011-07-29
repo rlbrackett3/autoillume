@@ -1,12 +1,15 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.0.rc4'
+gem 'rails', '3.1.0.rc5'
 
 # Asset template engines
+group :assets do
+  gem 'sass-rails', "~> 3.1.0.rc"
+  gem 'coffee-script'
+  gem 'uglifier'
+end
+
 gem 'haml'
-gem 'sass'
-gem 'coffee-script'
-gem 'uglifier'
 gem 'jquery-rails'
 
 # admin / user authentication
@@ -55,15 +58,6 @@ gem 'ruby-graphviz', :require => 'graphviz'
 # datetime validations
 #gem 'validates_timeliness', '~> 3.0.5' #https://github.com/adzap/validates_timeliness.git
 
-# To use debugger
-gem 'ruby-debug19', :require => 'ruby-debug'
-
-group :production do
-  platforms :ruby do
-    gem 'therubyracer-heroku'
-  end
-end
-
 group :development, :production do
   gem 'pg'
 end
@@ -81,7 +75,6 @@ group :development do
   gem 'nifty-generators'
   # haml and sass support for rails
   gem 'haml-rails'
-  gem 'sass-rails'
 end
 
 # gems used in testing and development
@@ -90,6 +83,8 @@ group :development, :test do
   gem 'ffaker'
   gem 'database_cleaner'
   gem 'autotest-rails'
+  # To use debugger
+  gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
 # test only gems

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  url: MyString
+  link_order: 1
+  description: MyString
+
+two:
+  title: MyString
+  url: MyString
+  link_order: 2
+  description: MyString
+
+flickr:
+  title: Flickr
+  url: http://flickr.com
+  link_order: 0
+  description: My Flickr photo feed.

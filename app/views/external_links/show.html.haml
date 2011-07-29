@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @external_link.title
+%p
+  %b Url:
+  = @external_link.url
+%p
+  %b Link order:
+  = @external_link.link_order
+%p
+  %b Description:
+  = @external_link.description
+
+= link_to 'Edit', edit_external_link_path(@external_link)
+\|
+= link_to 'Back', external_links_path

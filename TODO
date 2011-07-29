@@ -15,7 +15,7 @@
   *refactor authentication for integration with rails 3.1
 
 # Comments and Replies
-*
+*Ajaxify commenting.
 
 *implement reply system for comments
   *test reply controller
@@ -30,3 +30,7 @@
 *implement post Category feature
 
 *tests for Post publsihed_at datetime (using validates_timeliness gem??)
+
+# RSS Feed
+
+# Email List

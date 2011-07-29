@@ -26,6 +26,12 @@ Autoillume::Application.routes.draw do
   end
   resources :photos
 
+  resources :external_links do
+    collection do
+      post 'sort'
+    end
+  end
+
   get 'static/:permalink' => 'pages#show', as: :static
   get 'static/:permalink/edit' => 'pages#edit', as: :edit_static
   delete 'static/:permalink' => 'pages#destroy', as: :static, method: :delete

@@ -1,0 +1,25 @@
+%h1 Listing external_links
+
+%table
+  %tr
+    %th Title
+    %th Url
+    %th Link order
+    %th Description
+    %th
+    %th
+    %th
+
+  - @external_links.each do |external_link|
+    %tr
+      %td= external_link.title
+      %td= external_link.url
+      %td= external_link.link_order
+      %td= external_link.description
+      %td= link_to 'Show', external_link
+      %td= link_to 'Edit', edit_external_link_path(external_link)
+      %td= link_to 'Destroy', external_link, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New External link', new_external_link_path
