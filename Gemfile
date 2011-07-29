@@ -27,7 +27,7 @@ gem 'fog'
 gem 'mini_magick'
 
 # pagination
-# gem 'kaminari'
+gem 'kaminari'
 
 # client side validations
 gem 'client_side_validations'
