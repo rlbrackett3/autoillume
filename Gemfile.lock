@@ -100,6 +100,8 @@ GEM
       launchy (>= 0.3.2)
       rest-client (~> 1.6.1)
       term-ansicolor (~> 1.0.5)
+    heroku-rails (0.3.2)
+      heroku (>= 1.11.0)
     highline (1.6.2)
     hike (1.2.0)
     i18n (0.6.0)
@@ -228,6 +230,7 @@ DEPENDENCIES
   haml
   haml-rails
   heroku
+  heroku-rails
   jquery-rails
   mini_magick
   mocha

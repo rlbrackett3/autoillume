@@ -65,6 +65,7 @@ end
 
 # development only gems
 group :development do
+  gem 'heroku-rails'
   # JS runtime environment
   gem 'therubyracer'
   # production env simulation
