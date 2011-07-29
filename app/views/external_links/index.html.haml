@@ -8,7 +8,7 @@
     %th
     %th
   - @external_links.each do |link|
-    %tr.page{ :id => "external_link#{link.id}" }
+    %tr.page{ :id => "external_link_#{link.id}" }
       %td &dagger;drag&dagger;
       %td= link_to link.title, link.url, title: "View your #{link.title} page.", target: "_blank"
       %td= " . . . #{link.url}"
