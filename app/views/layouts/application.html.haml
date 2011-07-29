@@ -32,8 +32,11 @@
               %li.nav_link.page= link_to "( add a static page )", new_page_path, title: "You can add new static pages to the menu here."
               %li.nav_link.page= link_to "( manage static page )", pages_path, title: "You can manage static pages here."
           %ul.nav_links.external_links
-            %li.nav_link.external_link= link_to "FLICKR", "#"
-            %li.nav_link.external_link= link_to "PINTEREST", "#"
+            - @external_links.each do |link|
+              %li.nav_link.external_link= link_to link.title.to_s.upcase, link.url, title: link.title, description: truncate(link.description, length: 64, omission: '. . .'), target: '_blank'
+            - if admin_logged_in?
+              %li.nav_link.page= link_to "( add n external link)", new_external_link_path, title: "You can add new external links to the menu here."
+              %li.nav_link.page= link_to "( manage external links )", external_links_path, title: "You can manage external links here."
 
           - if admin_logged_in?
             %ul.nav_links.admin_nav_links

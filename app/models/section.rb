@@ -16,6 +16,7 @@ class Section < ActiveRecord::Base
   validates :position,          presence: true, on: :create
   # validates :post_id,           presence: true
   validates_associated :photo
+  # validates :photo, length: {maximum: 1}#not tested
 
   #scopes
   scope :forward, order('position ASC')

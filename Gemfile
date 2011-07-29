@@ -68,8 +68,6 @@ group :development do
   gem 'heroku-rails'
   # JS runtime environment
   gem 'therubyracer'
-  # production env simulation
-  gem 'foreman'
   # more descriptive models
   gem 'annotate'
   # gem 'annotate', :git => 'git://github.com/jeremyolliver/annotate_models.git', :branch => 'rake_compatibility'

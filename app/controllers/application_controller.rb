@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def load_external_links
-    # @external_links = ExternalLinks.rank(:link_order)
+    @external_links = ExternalLink.rank(:link_order)
   end
 
   # def admin_logged_in?

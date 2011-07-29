@@ -24,7 +24,7 @@ module ApplicationHelper
     }.gsub(/[\n ]+/, ' ').strip.html_safe
   end
 
-  def table_sortable
+  def pages_sortable
     %Q{
       <script type="text/javascript">
         $(document).ready(function() {
@@ -40,6 +40,30 @@ module ApplicationHelper
                 data:     $('#sortable_table').sortable('serialize'),
                 dataType: 'script',
                 url:      '#{sort_pages_path}'
+                } )
+              }
+            });
+          });
+      </script>
+    }.gsub(/[\n ]+/, ' ').strip.html_safe
+  end
+
+  def links_sortable
+    %Q{
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $('#sortable_table').sortable( {
+            dropOnEmpty: false,
+            cursor: 'crosshair',
+            opacity: 0.75,
+            scroll: true,
+            items: 'tr',
+            update: function() {
+              $.ajax( {
+                type:     'post',
+                data:     $('#sortable_table').sortable('serialize'),
+                dataType: 'script',
+                url:      '#{sort_external_links_path}'
                 } )
               }
             });

@@ -1,4 +1,5 @@
 class ExternalLinksController < ApplicationController
+  before_filter  :admin_login_required, except: [:show]
   # GET /external_links
   # GET /external_links.json
   def index
@@ -79,5 +80,12 @@ class ExternalLinksController < ApplicationController
       format.html { redirect_to external_links_url }
       format.json { head :ok }
     end
+  end
+
+  def sort
+    params[:external_link].each_with_index do |id, index|
+      ExternalLink.update_all(['link_order=?', index + 1], ['id=?', id])
+    end
+    render :nothing => true
   end
 end
