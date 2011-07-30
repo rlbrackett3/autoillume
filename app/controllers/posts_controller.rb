@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     # @search = Post.search(params[:search])
     # @posts = @search.relation.published.order('published_at DESC')
     @q = Post.search(params[:q])
-    @posts = @q.result(:distinct => true).published.order('published_at DESC')
+    @posts = @q.result(:distinct => true).published.order('published_at ASC').page(params[:page]).per(3)
     # @posts = Post.published.order('created_at DESC')
 
     respond_to do |format|
