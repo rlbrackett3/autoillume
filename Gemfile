@@ -79,6 +79,10 @@ end
 
 # gems used in testing and development
 group :development, :test do
+  gem 'indextank'
+  # search on models
+  gem 'ransack'
+  # gem "meta_search", :git => "git://github.com/ernie/meta_search.git"
   gem 'factory_girl_rails'
   gem 'ffaker'
   gem 'database_cleaner'

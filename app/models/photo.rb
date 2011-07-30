@@ -12,7 +12,7 @@ class Photo < ActiveRecord::Base
 
   # Validations
   validates :title,             length: { within: 3..254, allow_blank: true }
-  validates :image,         presence: true, on: :create
+  # validates :image,         presence: true, on: :create, allow_blank: true
   # validates :section_id,   presence: true # causes issues with nested validation
 
   # Callbacks

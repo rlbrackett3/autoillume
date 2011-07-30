@@ -12,10 +12,10 @@ class Section < ActiveRecord::Base
   accepts_nested_attributes_for :photo, allow_destroy: true
 
   # Validations
-  validates :body,              length: { within: 3..4096, allow_blank: true }
-  validates :position,          presence: true, on: :create
+  validates :body, length: { within: 3..4096, allow_blank: true }
+  validates :position, presence: true, on: :create
   # validates :post_id,           presence: true
-  validates_associated :photo
+  validates_associated :photo, allow_blank: true
   # validates :photo, length: {maximum: 1}#not tested
 
   #scopes

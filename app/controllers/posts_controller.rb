@@ -4,7 +4,11 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.published.order('created_at DESC')
+    # @search = Post.search(params[:search])
+    # @posts = @search.relation.published.order('published_at DESC')
+    @q = Post.search(params[:q])
+    @posts = @q.result(:distinct => true).published.order('published_at DESC')
+    # @posts = Post.published.order('created_at DESC')
 
     respond_to do |format|
       format.html # index.html.erb
