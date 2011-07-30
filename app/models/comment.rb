@@ -15,6 +15,7 @@ class Comment < ActiveRecord::Base
   # email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   email_regex = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   name_regex = /[a-zA-Z0-9_ ]/i
+  url_regex = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
   # url_regex = \b((ftp|https?)://[-\w]+(\.\w[-\w]*)+ | (?i: [a-z0-9] (?:[-a-z0-9]*[a-z0-9])? \. )+(?-i: com\b | edu\b | biz\b | gov\b | in(?:t|fo)\b | mil\b | net\b | org\b | [a-z][a-z]\b ))( : \d+ )?)/[^.!,?;<>()\[\]{}\s\x7F-\xFF]*(?:[.!,?]+  [^.!,?;<>()\[\]{}\s\x7F-\xFF]+)*)?
 
   validates :name,           presence: true,
@@ -23,7 +24,8 @@ class Comment < ActiveRecord::Base
   validates :email,           presence: true,
                                         length: { within: 5..120 },
                                         format: email_regex
-  validates :url,                length: { within: 9..254, allow_blank: true }
+  validates :url,                length: { within: 9..254, allow_blank: true },
+                                        format: { with: url_regex, message: "Please provide a properly formatted URL."}
   validates :body,            presence: true,
                                         length: { within: 3..1024 }
   validates :post_id,        presence: true#, on: :create

@@ -1,4 +1,4 @@
-= form_for @external_link do |f|
+= form_for @external_link, validate: true do |f|
   -if @external_link.errors.any?
     #error_explanation
       %h2= "#{pluralize(@external_link.errors.count, "error")} prohibited this external_link from being saved:"
@@ -12,9 +12,6 @@
   .field
     = f.label :url
     = f.text_field :url
-  .field
-    = f.label :link_order
-    = f.number_field :link_order
   .field
     = f.label :description
     = f.text_field :description

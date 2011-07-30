@@ -4,11 +4,7 @@ class ExternalLinkTest < ActiveSupport::TestCase
 require 'test_helper'
 
   def setup
-    @external_link = ExternalLink.create(title: 'foo', url: 'bar', description: 'foobar')
-  end
-
-  test 'should create a new external_link with valid attr' do
-    assert @external_link
+    @external_link = ExternalLink.create(title: 'foo', url: 'http://www.bar.com', description: 'foobar')
   end
 
   test 'should create a new external_link with valid attr' do
@@ -22,26 +18,31 @@ require 'test_helper'
     assert !external_link.save, "Saved the external_link with no attr"
   end
 
-  test 'should not create a new external_link with non unique title' do
+  test 'title: should not create a new external_link with non unique title' do
     #external_link = external_link.create(title: 'test', url: 'foo')
-    external_link2 = ExternalLink.new(title: 'foo', url: 'foo')
+    external_link2 = ExternalLink.new(title: 'foo', url: 'http://www.foo.com')
     assert !external_link2.save, "Saved the external_link with duplicate title"
   end
 
-  test 'should not create a new external_link with non unique url' do
-    #external_link = external_link.create(title: 'foo', url: 'foo')
-    external_link2 = ExternalLink.new(title: 'bar', url: 'bar')
-    assert !external_link2.save, "Saved the external_link with duplicate url"
-  end
-
-  test 'should require presence of title' do
+  test 'title: should require presence of title' do
     external_link = ExternalLink.new(url: 'foo')
     assert !external_link.save, "Saved the external_link without a title"
   end
 
-  test 'should require presence of url' do
+  test 'url: should not create a new external_link with non unique url' do
+    #external_link = external_link.create(title: 'foo', url: 'foo')
+    external_link2 = ExternalLink.new(title: 'bar', url: 'http://www.bar.com')
+    assert !external_link2.save, "Saved the external_link with duplicate url"
+  end
+
+  test 'url: should require presence of url' do
     external_link = ExternalLink.create(title: 'foo')
     assert !external_link.save, "saved the external_link without a url"
+  end
+
+  test 'url: should not accept an invalid url' do
+    el = ExternalLink.new title: 'foobar', url: 'foobar', description: 'barfoo'
+    assert !el.save, "Saved an external link without a valid URL"
   end
 
   # testing for accessible and protected attr
@@ -97,6 +98,6 @@ require 'test_helper'
 
   test 'should assign 0 as default external_link_order position' do
     external_link = ExternalLink.new(@external_link.attributes)
-    assert_equal external_link.external_link_order, 0, "Failed to set default external_link_order to 0."
+    assert_equal external_link.link_order, 0, "Failed to set default external_link_order to 0."
   end
 end
