@@ -1,5 +1,7 @@
 Autoillume::Application.routes.draw do
 
+  resources :bios
+
    # autentication routes
   ################################
   match 'admin/edit' => 'admins#edit', :as => :edit_current_admin

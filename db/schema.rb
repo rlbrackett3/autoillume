@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110719223657) do
+ActiveRecord::Schema.define(:version => 20110730055309) do
 
   create_table "admins", :force => true do |t|
     t.string   "username"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(:version => 20110719223657) do
 
   add_index "admins", ["email"], :name => "index_admins_on_email", :unique => true
   add_index "admins", ["username"], :name => "index_admins_on_username", :unique => true
+
+  create_table "bios", :force => true do |t|
+    t.string   "name"
+    t.string   "handle"
+    t.text     "description"
+    t.string   "avatar"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", :force => true do |t|
     t.string   "name"

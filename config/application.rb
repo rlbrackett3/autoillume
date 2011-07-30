@@ -12,7 +12,7 @@ module Autoillume
     config.generators do |g|
       g.template_engine :haml
       g.stylesheet_engine :SCSS
-      g.javascript_engine :coffee
+      g.javascript_engine :coffeescript
       # g.fixture_replacement :factory_girl, :dir => "spec/factories"
     end
     # Settings in config/environments/* take precedence over those specified here.
